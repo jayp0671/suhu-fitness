@@ -1,0 +1,8 @@
+{
+  "crons": [
+    { "path": "/api/push/send?type=morning", "schedule": "0 8 * * *" },
+    { "path": "/api/push/send?type=water", "schedule": "0 12 * * *" },
+    { "path": "/api/push/send?type=workout", "schedule": "0 17 * * *" },
+    { "path": "/api/push/send?type=sleep", "schedule": "0 22 * * *" }
+  ]
+}
