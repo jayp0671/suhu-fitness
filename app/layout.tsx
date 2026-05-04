@@ -1,8 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import { Providers } from "@/components/providers";
-import { BottomNav } from "@/components/layout/BottomNav";
-import { ChatBubble } from "@/components/chat/ChatBubble";
+import { AppChrome } from "@/components/layout/AppChrome";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -26,8 +25,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body className={`${inter.variable} font-sans antialiased`}>
         <Providers>
           {children}
-          <ChatBubble />
-          <BottomNav />
+          <AppChrome />
         </Providers>
       </body>
     </html>
