@@ -21,11 +21,18 @@ type Exercise = {
 type ExerciseLog = {
   exercise_id: string;
   exercise_name: string;
-  is_done?: boolean;
+  is_done?: boolean | null;
   sets_done?: number | null;
   reps_done?: string | null;
   weight_lbs?: number | null;
-  is_custom?: boolean;
+  is_custom?: boolean | null;
+};
+
+type TodayData = {
+  log?: {
+    cardio_done?: boolean | null;
+  } | null;
+  exercises?: ExerciseLog[];
 };
 
 function isWorkoutDay(day: string): day is WorkoutDay {
@@ -34,9 +41,13 @@ function isWorkoutDay(day: string): day is WorkoutDay {
 
 export default function WorkoutPage() {
   const [selected, setSelected] = useState<WorkoutDay>(getTodayKey());
-  const { data } = useToday();
+  const today = useToday();
+  const data = today.data as TodayData | undefined;
 
-  const logs = (data?.exercises ?? []) as ExerciseLog[];
+  const logs = useMemo(() => {
+    return data?.exercises ?? [];
+  }, [data?.exercises]);
+
   const plan = WORKOUT_PLAN[selected];
 
   const logMap = useMemo(() => {
