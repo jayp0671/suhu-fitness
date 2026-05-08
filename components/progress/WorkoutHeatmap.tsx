@@ -18,6 +18,9 @@ export function WorkoutHeatmap({ logs, exercises }: { logs: DailyLog[]; exercise
     days.push({ date: dateStr, hasWorkout: exs.length > 0, hasCardio: Boolean(log?.cardio_done) });
   }
 
+  // getDay(): 0=Sun,1=Mon,...,6=Sat. Convert to Mon-based: Mon=0 ... Sun=6
+  const firstDayOfWeek = (new Date(days[0].date).getDay() + 6) % 7;
+
   const streak = (() => {
     let s = 0;
     for (let i = days.length - 1; i >= 0; i--) {
@@ -40,6 +43,10 @@ export function WorkoutHeatmap({ logs, exercises }: { logs: DailyLog[]; exercise
       <div className="grid grid-cols-7 gap-1.5">
         {["M", "T", "W", "T", "F", "S", "S"].map((d, i) => (
           <div key={i} className="text-center text-[9px] text-neutral-600">{d}</div>
+        ))}
+        {/* leading empty cells to align first day to correct column */}
+        {Array.from({ length: firstDayOfWeek }).map((_, i) => (
+          <div key={`empty-${i}`} className="aspect-square" />
         ))}
         {days.map((day) => (
           <div
