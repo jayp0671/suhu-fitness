@@ -19,8 +19,7 @@ export function WorkoutHeatmap({ logs, exercises }: { logs: DailyLog[]; exercise
   }
 
   // getDay(): 0=Sun,1=Mon,...,6=Sat. Convert to Mon-based: Mon=0 ... Sun=6
-  const firstDayOfWeek = (new Date(days[0].date).getDay() + 6) % 7;
-
+const firstDayOfWeek = (new Date(days[0].date + "T12:00:00").getDay() + 6) % 7;
   const streak = (() => {
     let s = 0;
     for (let i = days.length - 1; i >= 0; i--) {
