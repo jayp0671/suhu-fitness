@@ -20,3 +20,8 @@ export function formatNiceDate(value: string) {
 export function clamp(value: number, min: number, max: number) {
   return Math.min(Math.max(value, min), max);
 }
+
+export function isRestDay(date = new Date()): boolean {
+  const day = date.getDay();
+  return day === 0 || day === 6;
+}

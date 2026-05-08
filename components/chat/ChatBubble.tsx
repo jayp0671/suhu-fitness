@@ -11,7 +11,12 @@ export function ChatBubble() {
   if (pathname === "/login") return null;
   return (
     <>
-      <button onClick={() => setOpen(true)} className="fixed bottom-28 right-5 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[#c8f065] text-[#0a0a0a] shadow-2xl"><Bot className="h-6 w-6" /></button>
+      <button
+        onClick={() => setOpen(true)}
+        className="fixed bottom-28 right-5 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[#c8f065] text-[#0a0a0a] shadow-2xl transition active:scale-95"
+      >
+        <Bot className="h-6 w-6" />
+      </button>
       {open ? <ChatDrawer onClose={() => setOpen(false)} /> : null}
     </>
   );

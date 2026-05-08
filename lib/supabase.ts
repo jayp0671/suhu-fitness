@@ -8,7 +8,6 @@ export function getBrowserSupabase() {
   if (!supabaseUrl || !anonKey) {
     throw new Error("Missing NEXT_PUBLIC_SUPABASE_URL or NEXT_PUBLIC_SUPABASE_ANON_KEY");
   }
-
   return createClient(supabaseUrl, anonKey);
 }
 
@@ -16,7 +15,6 @@ export function getServiceSupabase() {
   if (!supabaseUrl || !serviceKey) {
     throw new Error("Missing NEXT_PUBLIC_SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY");
   }
-
   return createClient(supabaseUrl, serviceKey, {
     auth: { persistSession: false },
   });

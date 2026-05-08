@@ -6,12 +6,7 @@ import { ChatBubble } from "@/components/chat/ChatBubble";
 
 export function AppChrome() {
   const pathname = usePathname();
-  const hideChrome = pathname === "/login";
-
-  if (hideChrome) {
-    return null;
-  }
-
+  if (pathname === "/login") return null;
   return (
     <>
       <ChatBubble />

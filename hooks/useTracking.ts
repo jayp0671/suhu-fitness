@@ -13,6 +13,11 @@ export function useTracking(date = getLocalDate()) {
       if (!res.ok) throw new Error("Failed to save tracking");
       return res.json();
     },
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["today", date] }),
+    onSuccess: (data) => {
+      queryClient.setQueryData(["today", date], (old: Record<string, unknown> | undefined) => {
+        if (!old) return { log: data.log, meals: [], exercises: [] };
+        return { ...old, log: data.log };
+      });
+    },
   });
 }

@@ -12,7 +12,6 @@ export const authOptions: NextAuthOptions = {
         if (credentials?.pin && credentials.pin === process.env.APP_PIN) {
           return { id: "suhu", name: "Suhu" };
         }
-
         return null;
       },
     }),
