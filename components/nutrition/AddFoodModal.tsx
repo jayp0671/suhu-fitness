@@ -81,8 +81,7 @@ export function AddFoodModal({ meal, onClose }: { meal: string; onClose: () => v
   }
 
   async function addQuickItem(item: typeof QUICK_ADDS[0]) {
-    await addFood.mutateAsync({ meal, ...item });
-    onClose();
+await addFood.mutateAsync({ meal, food_name: item.name, ...item });    onClose();
   }
 
   async function addFavorite(fav: Favorite) {
